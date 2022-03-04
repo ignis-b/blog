@@ -30,7 +30,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-
+{#                        {% if app.user %}#}
                             <li>
                                 <a href="{{ path_for('myArticles') }}">
                                     My Articles
@@ -56,23 +56,28 @@
 {#                        {% else %}#}
                             <li>
                                 <a href="{{ path_for('user_register') }}">
-                                    REGISTER
+                                    Register
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path_for('security_login') }}">
-                                    LOGIN
+                                    Login
                                 </a>
                             </li>
-
+{#                        {% endif %}#}
                     </ul>
                 </div>
             </div>
         </div>
     </header>
     <div class="container body-container">
-    {% block body %}
-    {% endblock %}
+
+        <div class="row">
+            <div id="main" class="col-sm-9">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
