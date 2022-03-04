@@ -41,6 +41,15 @@ $container['logger'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 
+$container['service'] = function ($c) {
+    return new App\Services\AuthService;
+};
 $container[App\Controllers\HomeAction::class] = function ($c) {
     return new App\Controllers\HomeAction($c->get('view'), $c->get('logger'));
+};
+$container[App\Controllers\UsersController::class] = function ($c) {
+    return new App\Controllers\UsersController($c->get('view'), $c->get('logger'));
+};
+$container[App\Controllers\UserController::class] = function ($c) {
+    return new App\Controllers\UserController($c->get('view'), $c->get('logger'), $c->get('service'));
 };
