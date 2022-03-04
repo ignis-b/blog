@@ -1,18 +1,29 @@
 {% extends 'base.twig' %}
 
 {% block body %}
+    <div>
+        {% if nameError %}<span class="alert alert-danger">* {{ nameError }}</span>{% endif %}
+    </div>
     <table class="table">
         <form name="register" method="post">
+            <tr>
+                <td colspan="2">
+
+                </td>
+            </tr>
             <tr>
                 <td>Email:</td>
                 <td>
                     <input type="text" name="email" class="form-control" aria-label="Email">
-                    {% if nameError %}<span class="alert alert-danger">* {{ nameError }}</span>{% endif %}
                 </td>
             </tr>
             <tr>
                 <td>Password:</td>
                 <td><input type="text" name="password" class="form-control" aria-label="password"></td>
+            </tr>
+            <tr>
+                <td>Repeat Password:</td>
+                <td><input type="text" name="repeat_password" class="form-control" aria-label="repeat_password"></td>
             </tr>
             <tr>
                 <td>FullName:</td>

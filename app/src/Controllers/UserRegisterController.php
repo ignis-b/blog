@@ -26,15 +26,16 @@ class UserRegisterController {
     public function __invoke(Request $request, Response $response, $args)
     {
         $this->logger->info("User Register");
-        if ($request->getParsedBody() != NULL) {
+        $res = '';
+        if ($request->getParsedBody()) {
             $input = $request->getParsedBody();
-            var_dump($input);
+            $res = $this->userRegisterService->validate($input);
         }
-        
-        $nameError = '';
+
+        //var_dump(implode($res, ' '));
         $this->view
             ->render($response, 'user/register.twig',
-             ['nameError' => $nameError]
+             ['nameError' => $res]
         );
 
         return $response;
