@@ -30,7 +30,7 @@ class AuthService {
     }
 
     public function check()
-    {var_dump(444);
+    {
         return isset($_SESSION['user']) && ($_SESSION['user'] === $this->login);
     }
 }
