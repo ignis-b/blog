@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Slim 3</title>
+    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <link href='{{ base_url() }}/css/style.css' rel='stylesheet' type='text/css'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <script src='{{ base_url() }}/js/jquery-3.3.1.min.js')'></script>
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{{ path_for('homepage') }}" class="navbar-brand">BLOG</a>
+                    {#{% if app.user %}#}
+                    {#<a href="{{ path('article_create') }}" class="navbar-brand">#}
+                    {#Create Article#}
+                    {#</a>#}
+                    {#{% endif %}#}
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                            <li>
+                                <a href="{{ path_for('myArticles') }}">
+                                    My Articles
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path_for('article_create') }}">
+                                    Create Article
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path_for('user_profile') }}">
+                                    My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path_for('security_logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+{#                        {% else %}#}
+                            <li>
+                                <a href="{{ path_for('user_register') }}">
+                                    REGISTER
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path_for('security_login') }}">
+                                    LOGIN
+                                </a>
+                            </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container body-container">
+    {% block body %}
+    {% endblock %}
+    </div>
+</body>
+</html>
