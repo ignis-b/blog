@@ -44,6 +44,9 @@ $container['logger'] = function ($c) {
 $container['service'] = function ($c) {
     return new App\Services\AuthService;
 };
+$container['user_register_service'] = function ($c) {
+    return new App\Services\UserRegisterService;
+};
 $container[App\Controllers\HomeAction::class] = function ($c) {
     return new App\Controllers\HomeAction($c->get('view'), $c->get('logger'));
 };
@@ -52,4 +55,7 @@ $container[App\Controllers\UsersController::class] = function ($c) {
 };
 $container[App\Controllers\UserController::class] = function ($c) {
     return new App\Controllers\UserController($c->get('view'), $c->get('logger'), $c->get('service'));
+};
+$container[App\Controllers\UserRegisterController::class] = function ($c) {
+    return new App\Controllers\UserRegisterController($c->get('view'), $c->get('logger'), $c->get('user_register_service'));
 };

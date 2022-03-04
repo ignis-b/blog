@@ -21,6 +21,8 @@ $app->get('/security_logout', App\Controllers\HomeAction::class)
  ->setName('security_logout');
 $app->get('/security_login', App\Controllers\HomeAction::class)
  ->setName('security_login');
-$app->get('/user_register', App\Controllers\HomeAction::class)
+$app->get('/user_register', App\Controllers\UserRegisterController::class)
+ ->setName('user_register');
+$app->post('/user_register', App\Controllers\UserRegisterController::class)
  ->setName('user_register');
 $app->run();
