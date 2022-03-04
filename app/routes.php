@@ -1,11 +1,11 @@
 <?php
 // Routes
 
-$app->get('/', App\Action\HomeAction::class)
+$app->get('/', App\Controllers\HomeAction::class)
     ->setName('homepage');
 
 $app->get('/users', function () {
-    $users = App\Model\Users::all();
+    $users = App\Models\Users::all();
     echo $users->toJson();
 });
 
