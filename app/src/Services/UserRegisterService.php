@@ -8,7 +8,7 @@ class UserRegisterService
 {
     /**
      * Validate method.
-     * @param $array params
+     * @param array $params
      * @return boolean|string
      */
     public function validate($params)

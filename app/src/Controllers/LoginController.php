@@ -1,16 +1,15 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Users;
 use App\Services\AuthService;
 use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 
-class UserController
+class LoginController
 {
-    
-    const SUBTEMPLATE = 'login';
     private $authService;
     private $view;
     private $logger;
@@ -27,13 +26,19 @@ class UserController
         $this->authService = $authService;
     }
     
-    public function __invoke(Request $request, Response $response, $pageNumber = 1)
+    public function __invoke(Request $request, Response $response)
     {
 
-        if ($this->authService->check()) {
-            return $response->withRedirect('/');
+        $this->logger->info("User Login");
+        if ($request->isPost()) {
+            if ($this->authService->check($request->getParsedBody())) {
+                return $response->withRedirect('/');
+            }
+            $error = 'Incorrect username and/or password!';
         }
 
+        $this->view
+            ->render($response, 'user/login.twig', ['nameError' => $error]);
     }
 
 }

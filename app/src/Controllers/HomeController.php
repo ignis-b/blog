@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-final class UserAction
+final class HomeController
 {
     private $view;
     private $logger;
@@ -20,7 +20,10 @@ final class UserAction
     public function __invoke(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        $this->view->render($response, 'home.twig');
+        $this->view->render($response, 'home.twig',
+            ['sess_name' => $_SESSION['name'], 'sess_loggedin' => $_SESSION['loggedin']]
+        );
+
         return $response;
     }
 }

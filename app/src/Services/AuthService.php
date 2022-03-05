@@ -1,37 +1,24 @@
 <?php
 namespace App\Services;
 
+use App\Models\Users;
+
 class AuthService
 {
-    const LOGIN = 'ignis.b@gmail.com';
-    const PASSWORD = '1234';
-
-    private $login;
-    private $password;
-    
     /**
-     * Auth constructor.
-     * @internal param Container $container
+     * Check User method.
+     * @param array $params
+     * @return boolean
      */
-    public function __construct()
+    public function check($params)
     {
-        $this->login = self::LOGIN;
-        $this->password = self::PASSWORD;
-        session_start();
-        
-    }
-    public function attempt($login, $password)
-    {
-        if ($login === $this->login && $password === $this->password) {
-            $_SESSION['user'] =  $this->login;
-            return true;
+        $query = Users::where('email', $params['email']);
+        if ($query->first()->email && password_verify($params['password'], $query->first()->password)) {
+            $_SESSION['loggedin'] = TRUE;
+            $_SESSION['name'] = $query->first()->FullName;
+            $_SESSION['id'] = $query->first()->id;
+            return TRUE;
         }
-
-        return false;
-    }
-
-    public function check()
-    {
-        return isset($_SESSION['user']) && ($_SESSION['user'] === $this->login);
+        return FALSE;
     }
 }

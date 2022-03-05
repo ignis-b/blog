@@ -25,8 +25,8 @@ class UserRegisterController
     }
     public function __invoke(Request $request, Response $response, $args) {
         $this->logger->info("User Register");
-  
-        if ($request->getParsedBody()) {
+
+        if ($request->isPost()) {
             $input = $request->getParsedBody();
             
             if ($this->userRegisterService->validate($input) === TRUE &&

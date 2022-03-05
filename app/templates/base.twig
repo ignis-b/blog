@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Slim 3</title>
+    <title>Blog</title>
     <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
     <link href='{{ base_url() }}/css/style.css' rel='stylesheet' type='text/css'>
 
@@ -17,11 +17,6 @@
             <div class="container">
                 <div class="navbar-header">
                     <a href="{{ path_for('homepage') }}" class="navbar-brand">BLOG</a>
-                    {#{% if app.user %}#}
-                    {#<a href="{{ path('article_create') }}" class="navbar-brand">#}
-                    {#Create Article#}
-                    {#</a>#}
-                    {#{% endif %}#}
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -30,7 +25,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-{#                        {% if app.user %}#}
+                        {% if sess_loggedin %}
                             <li>
                                 <a href="{{ path_for('myArticles') }}">
                                     My Articles
@@ -42,18 +37,12 @@
                                     Create Article
                                 </a>
                             </li>
-
-                            <li>
-                                <a href="{{ path_for('user_profile') }}">
-                                    My Profile
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{ path_for('security_logout') }}">
                                     Logout
                                 </a>
                             </li>
-{#                        {% else %}#}
+                        {% else %}
                             <li>
                                 <a href="{{ path_for('user_register') }}">
                                     Register
@@ -64,7 +53,7 @@
                                     Login
                                 </a>
                             </li>
-{#                        {% endif %}#}
+                        {% endif %}
                     </ul>
                 </div>
             </div>

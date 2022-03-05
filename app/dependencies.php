@@ -47,15 +47,19 @@ $container['service'] = function ($c) {
 $container['user_register_service'] = function ($c) {
     return new App\Services\UserRegisterService;
 };
-$container[App\Controllers\HomeAction::class] = function ($c) {
-    return new App\Controllers\HomeAction($c->get('view'), $c->get('logger'));
+$container['logout_service'] = function ($c) {
+    return new App\Services\LogoutService;
 };
-$container[App\Controllers\UsersController::class] = function ($c) {
-    return new App\Controllers\UsersController($c->get('view'), $c->get('logger'));
+
+$container[App\Controllers\HomeController::class] = function ($c) {
+    return new App\Controllers\HomeController($c->get('view'), $c->get('logger'));
 };
-$container[App\Controllers\UserController::class] = function ($c) {
-    return new App\Controllers\UserController($c->get('view'), $c->get('logger'), $c->get('service'));
+$container[App\Controllers\LoginController::class] = function ($c) {
+    return new App\Controllers\LoginController($c->get('view'), $c->get('logger'), $c->get('service'));
 };
 $container[App\Controllers\UserRegisterController::class] = function ($c) {
     return new App\Controllers\UserRegisterController($c->get('view'), $c->get('logger'), $c->get('user_register_service'));
+};
+$container[App\Controllers\LogoutController::class] = function ($c) {
+    return new App\Controllers\LogoutController($c->get('view'), $c->get('logger'), $c->get('logout_service'));
 };
