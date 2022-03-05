@@ -3,13 +3,8 @@ namespace App\Models;
 
 class Users extends \Illuminate\Database\Eloquent\Model
 {
-    public $table = 'user';
-    public $timestamps = false;
-    
-    protected $fillable = [
-     'emil',
-     'name',
-     'password_hash',
-     'role'
-    ];
+    const UPDATED_AT = 'updated';
+    const CREATED_AT = 'created';
+    protected $table = 'users';
+    protected $fillable = ['FullName', 'email', 'password'];
 }

@@ -1,9 +1,9 @@
 <?php
 use App\Controllers\HomeAction;
 use App\Controllers\UserController;
-    use App\Controllers\UsersController;
+use App\Controllers\UsersController;
 
-$app->get('/', App\Controllers\HomeAction::class)
+$app->get('/', HomeAction::class)
     ->setName('homepage');
 
 $app->get('/users', UsersController::class);

@@ -7,7 +7,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 
-class UserController {
+class UserController
+{
     
     const SUBTEMPLATE = 'login';
     private $authService;

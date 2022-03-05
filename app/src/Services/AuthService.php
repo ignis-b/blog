@@ -1,7 +1,8 @@
 <?php
 namespace App\Services;
 
-class AuthService {
+class AuthService
+{
     const LOGIN = 'ignis.b@gmail.com';
     const PASSWORD = '1234';
 

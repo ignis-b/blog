@@ -7,7 +7,8 @@ use Slim\Http\Response;
 use Slim\Views\Twig;
 use App\Services\UserRegisterService;
 
-class UserRegisterController {
+class UserRegisterController
+{
     private $view;
     private $logger;
 
@@ -17,25 +18,29 @@ class UserRegisterController {
      * @param LoggerInterface $logger
      * @param UserRegisterService $userRegisterService
      */
-    public function __construct(Twig $view, LoggerInterface $logger, UserRegisterService $userRegisterService)
-    {
+    public function __construct(Twig $view, LoggerInterface $logger, UserRegisterService $userRegisterService) {
         $this->view = $view;
         $this->logger = $logger;
         $this->userRegisterService = $userRegisterService;
     }
-    public function __invoke(Request $request, Response $response, $args)
-    {
+    public function __invoke(Request $request, Response $response, $args) {
         $this->logger->info("User Register");
-        $res = '';
+  
         if ($request->getParsedBody()) {
             $input = $request->getParsedBody();
-            $res = $this->userRegisterService->validate($input);
+            
+            if ($this->userRegisterService->validate($input) === TRUE &&
+                $this->userRegisterService->insertDatabase($input) === TRUE
+            ) {
+                $success = "You registered successfully.";
+            } else {
+                $error = $this->userRegisterService->validate($input);
+            }
         }
 
-        //var_dump(implode($res, ' '));
         $this->view
             ->render($response, 'user/register.twig',
-             ['nameError' => $res]
+            ['nameError' => $error, 'nameSuccess' => $success]
         );
 
         return $response;

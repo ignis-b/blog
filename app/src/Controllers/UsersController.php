@@ -6,7 +6,8 @@ use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-final class UsersController {
+final class UsersController
+{
     private $view;
     private $logger;
     
