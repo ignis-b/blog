@@ -45,9 +45,9 @@ class UserRegisterService
     public function insertDatabase($input)
     {
         $res = Users::create([
-         'FullName' => $input['fullName'],
-         'email' => $input['email'],
-         'password' => password_hash($input['password'],PASSWORD_DEFAULT),
+            'FullName' => $input['fullName'],
+            'email' => $input['email'],
+            'password' => password_hash($input['password'],PASSWORD_DEFAULT),
         ]);
 
         return $res->incrementing;

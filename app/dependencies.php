@@ -50,6 +50,9 @@ $container['user_register_service'] = function ($c) {
 $container['logout_service'] = function ($c) {
     return new App\Services\LogoutService;
 };
+$container['article_create_service'] = function ($c) {
+    return new App\Services\ArticleCreateService;
+};
 
 $container[App\Controllers\HomeController::class] = function ($c) {
     return new App\Controllers\HomeController($c->get('view'), $c->get('logger'));
@@ -62,4 +65,7 @@ $container[App\Controllers\UserRegisterController::class] = function ($c) {
 };
 $container[App\Controllers\LogoutController::class] = function ($c) {
     return new App\Controllers\LogoutController($c->get('view'), $c->get('logger'), $c->get('logout_service'));
+};
+$container[App\Controllers\ArticleCreateController::class] = function ($c) {
+    return new App\Controllers\ArticleCreateController($c->get('view'), $c->get('logger'), $c->get('article_create_service'));
 };

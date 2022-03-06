@@ -10,7 +10,6 @@ class LogoutService
      */
     public function logout()
     {
-        var_dump('in');
         session_destroy();
     }
 }

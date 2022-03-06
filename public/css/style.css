@@ -5845,6 +5845,13 @@ button.list-group-item-danger.active:focus {
 .embed-responsive-4by3 {
   padding-bottom: 75%;
 }
+.message {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
 .well {
   min-height: 20px;
   padding: 19px;

@@ -1,0 +1,58 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+
+    <div class="container body-content span=8 offset=2">
+        <div class="message">
+            {% if nameError %}<span class="alert alert-danger">* {{ nameError }}</span>{% endif %}
+            {% if nameSuccess %}<span class="alert alert-success">* {{ nameSuccess }}</span>{% endif %}
+        </div>
+        <div class="well">
+            <form class="form-horizontal" enctype="multipart/form-data" action="{{ path_for('article_create') }}" method="POST">
+                <fieldset>
+                    <legend>New Article</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_title">Title</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="article_title" placeholder="Article Title"
+                                name="title">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_summary">Summary</label>
+                        <div class="col-sm-6">
+                        <textarea class="form-control" rows="3" id="article_summary"
+                            name="summary"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Content</label>
+                        <div class="col-sm-6">
+                        <textarea class="form-control" rows="6" id="article_content"
+                            name="content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_image">Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" accept=".jpg, .png" class="form-control" id="article_image" placeholder="Image"
+                                name="image">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path_for('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
