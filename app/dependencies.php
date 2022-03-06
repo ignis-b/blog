@@ -1,6 +1,5 @@
 <?php
 // DIC configuration
-
 $container = $app->getContainer();
 
 // -----------------------------------------------------------------------------
@@ -56,6 +55,9 @@ $container['logout_service'] = function ($c) {
 $container['article_create_service'] = function ($c) {
     return new App\Services\ArticleCreateService;
 };
+$container['article_service'] = function ($c) {
+    return new App\Services\ArticleService;
+};
 
 $container[App\Controllers\HomeController::class] = function ($c) {
     return new App\Controllers\HomeController($c->get('view'), $c->get('logger'), $c->get('home_service'));
@@ -73,5 +75,8 @@ $container[App\Controllers\ArticleCreateController::class] = function ($c) {
     return new App\Controllers\ArticleCreateController($c->get('view'), $c->get('logger'), $c->get('article_create_service'));
 };
 $container[App\Controllers\ArticleEditController::class] = function ($c) {
-    return new App\Controllers\ArticleEditController($c->get('view'), $c->get('logger'), $c->get('home_service'));
+    return new App\Controllers\ArticleEditController($c->get('view'), $c->get('logger'), $c->get('article_service'));
+};
+$container[App\Controllers\ArticleDeleteController::class] = function ($c) {
+    return new App\Controllers\ArticleDeleteController($c->get('view'), $c->get('logger'), $c->get('article_service'));
 };

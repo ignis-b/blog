@@ -24,14 +24,14 @@ class ArticleCreateController
         $this->articleCreateService = $articleCreateService;
     }
     public function __invoke(Request $request, Response $response, $args) {
-        $this->logger->info("Article Create");
+        $this->logger->info("Article is created.");
         if ($request->isPost()) {
             $input = $request->getParsedBody();
 
             if ($this->articleCreateService->validate($input) === TRUE &&
                 $this->articleCreateService->insertDatabase($input) === TRUE
             ) {
-                return $response->withRedirect('/myArticles');
+                $success = 'Article was created.';
             } else {
                 $error = $this->articleCreateService->validate($input);
             }
@@ -40,9 +40,10 @@ class ArticleCreateController
         $this->view
             ->render($response, 'article/create.twig',
             [
-                 'nameError' => $error,
-                 'sess_name' => $_SESSION['name'],
-                 'sess_loggedin' => $_SESSION['loggedin']
+                'nameSuccess' => $success,
+                'nameError' => $error,
+                'sess_name' => $_SESSION['name'],
+                'sess_loggedin' => $_SESSION['loggedin']
             ]
         );
 

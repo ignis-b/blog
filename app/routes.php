@@ -6,12 +6,14 @@ $app->get('/{page:[0-9]+}', App\Controllers\HomeController::class)
     ->setName('homepage_page');
 
 $app->get('/article_edit/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
- ->setName('article_edit');
+    ->setName('article_edit');
 $app->post('/article_edit/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
- ->setName('article_edit');
+    ->setName('article_edit');
 
-$app->get('/article_delete/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
- ->setName('article_delete');
+$app->get('/article_delete/{id:[0-9]+}', App\Controllers\ArticleDeleteController::class)
+    ->setName('article_delete');
+$app->post('/article_delete/{id:[0-9]+}', App\Controllers\ArticleDeleteController::class)
+     ->setName('article_delete');
 
 $app->get('/myArticles', App\Controllers\HomeController::class)
     ->setName('myArticles');

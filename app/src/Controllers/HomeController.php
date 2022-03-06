@@ -11,6 +11,7 @@ final class HomeController
 {
     private $view;
     private $logger;
+    private $homeService;
 
     /**
      * Controller constructor.

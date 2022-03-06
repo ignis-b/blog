@@ -11,6 +11,7 @@ class UserRegisterController
 {
     private $view;
     private $logger;
+    private $userRegisterService;
 
     /**
      * Controller constructor.
