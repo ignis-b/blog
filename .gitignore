@@ -2,3 +2,4 @@ vendor/
 log/*
 cache/*
 .idea
+public/uploads/images/*

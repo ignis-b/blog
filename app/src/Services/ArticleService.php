@@ -32,14 +32,18 @@ class ArticleService
      */
     public function updateDatabase($input)
     {
+        $data = [
+             'title' => $input['title'],
+             'summary' => $input['summary'],
+             'content' => $input['content'],
+        ];
+        if (!empty($input['image'])) {
+            $data['image'] = $input['image'];
+        }
+
         try {
             Articles::where('id', $input['id'])
-                ->update([
-                    'title' => $input['title'],
-                    'summary' => $input['summary'],
-                    'content' => $input['content'],
-                    'image' => $input['image'],
-            ]);
+                ->update($data);
 
             return TRUE;
         } catch ( \Exception $e ) {

@@ -35,10 +35,11 @@ class ArticleCreateService
     {
         try {
             Articles::create([
-             'title' => $input['title'],
-             'summary' => $input['summary'],
-             'content' => $input['content'],
-             'authorId' => $_SESSION['id'],
+                'title' => $input['title'],
+                'summary' => $input['summary'],
+                'content' => $input['content'],
+                'image' => $input['image'],
+                'authorId' => $_SESSION['id'],
             ]);
             return TRUE;
         } catch ( \Exception $e ) {

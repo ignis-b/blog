@@ -58,6 +58,9 @@ $container['article_create_service'] = function ($c) {
 $container['article_service'] = function ($c) {
     return new App\Services\ArticleService;
 };
+$container['image_service'] = function ($c) {
+    return new App\Services\ImageService;
+};
 
 $container[App\Controllers\HomeController::class] = function ($c) {
     return new App\Controllers\HomeController($c->get('view'), $c->get('logger'), $c->get('home_service'));
@@ -72,10 +75,10 @@ $container[App\Controllers\LogoutController::class] = function ($c) {
     return new App\Controllers\LogoutController($c->get('view'), $c->get('logger'), $c->get('logout_service'));
 };
 $container[App\Controllers\ArticleCreateController::class] = function ($c) {
-    return new App\Controllers\ArticleCreateController($c->get('view'), $c->get('logger'), $c->get('article_create_service'));
+    return new App\Controllers\ArticleCreateController($c->get('view'), $c->get('logger'), $c->get('article_create_service'), $c->get('image_service'));
 };
 $container[App\Controllers\ArticleEditController::class] = function ($c) {
-    return new App\Controllers\ArticleEditController($c->get('view'), $c->get('logger'), $c->get('article_service'));
+    return new App\Controllers\ArticleEditController($c->get('view'), $c->get('logger'), $c->get('article_service'), $c->get('image_service'));
 };
 $container[App\Controllers\ArticleDeleteController::class] = function ($c) {
     return new App\Controllers\ArticleDeleteController($c->get('view'), $c->get('logger'), $c->get('article_service'));

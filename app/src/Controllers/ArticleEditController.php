@@ -6,24 +6,28 @@ use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Services\ArticleService;
+use App\Services\ImageService;
 
 final class ArticleEditController
 {
     private $view;
     private $logger;
     private $articleService;
+    private $imageService;
     
     /**
      * Controller constructor.
      * @param Twig $view
      * @param LoggerInterface $logger
      * @param ArticleService $articleService
+     * @param ImageService $imageService
      */
-    public function __construct(Twig $view, LoggerInterface $logger, ArticleService $articleService)
+    public function __construct(Twig $view, LoggerInterface $logger, ArticleService $articleService, ImageService $imageService)
     {
         $this->view = $view;
         $this->logger = $logger;
         $this->articleService = $articleService;
+        $this->imageService = $imageService;
     }
 
     public function __invoke(Request $request, Response $response, $args)
@@ -33,6 +37,12 @@ final class ArticleEditController
 
         if ($request->isPost()) {
             $input = $request->getParsedBody();
+            $image = $request->getUploadedFiles();
+
+            if ($this->imageService->image($image['image'])) {
+                $input['image'] = $image['image']->getClientFilename();
+            }
+
             if ($this->articleService->updateDatabase($input) === TRUE
             ) {
                 $success = "Article was updated.";
