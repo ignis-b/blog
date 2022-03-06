@@ -6,12 +6,15 @@
                 <div class="col-md-12 well">
                     <article>
                         <header>
-                            <h2>Title: {{ article.title }}</h2>
+                            <h2>{{ article.title }}</h2>
                         </header>
-                        <p>
-                            {{ article.summary }}
-                        </p>
-                        <img src="{{ base_url() }}/uploads/images/{{ article.image }}" width="400" height="200" >
+                        <div>
+
+                            <img src="{{ base_url() }}/uploads/images/{{ article.image }}" width="400" height="200" >
+                            <p>
+                                {{ article.summary }}
+                            </p>
+                        </div>
                         <footer>
                             <div class="pull-right">
                                 <a class="btn btn-danger btn-xs" href="{{ path_for('article_delete', {'id': article.id}) }}">delete &raquo;</a>

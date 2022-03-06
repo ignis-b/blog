@@ -7051,6 +7051,10 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #2c3e50;
 }
+article  p {
+  float: right;
+  width: 60%;
+}
 article .author {
   margin-bottom: 0;
 }
