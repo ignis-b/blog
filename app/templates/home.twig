@@ -1,5 +1,38 @@
 {% extends 'base.twig' %}
 {% block body %}
-    <h1>Blog</h1>
-    <div>-1-</div>
+    <div class="container body-content">
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-md-12 well">
+                    <article>
+                        <header>
+                            <h2>Title: {{ article.title }}</h2>
+                        </header>
+                        <p>
+                            {{ article.summary }}
+                        </p>
+                        <img src="{{ base_url() }}/uploads/images/{{ article.image }}" width="400" height="200" >
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-danger btn-xs" href="{{ path_for('article_delete', {'id': article.id}) }}">delete &raquo;</a>
+                                <a class="btn btn-success btn-xs" href="{{ path_for('article_edit', {'id': article.id}) }}">edit &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+                <hr />
+
+            {% endfor %}
+        </div>
+        <div class="col-md-12 well">
+            {% if pagination.needed %}
+                <div class="ui pagination menu">
+                    {% for i in 1..pagination.lastpage %}
+                        <a class="{% if i == pagination.page %}active{% endif %} btn btn-xs" href="{{ path_for('homepage_page', { 'page': i }) }}">{{ i }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\Users;
 use App\Services\AuthService;
 use Psr\Log\LoggerInterface;
 use Slim\Http\Request;

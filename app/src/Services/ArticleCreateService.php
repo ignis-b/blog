@@ -5,7 +5,6 @@ use App\Models\Articles;
 
 class ArticleCreateService
 {
-    public $test = 0;
     /**
      * Validate method.
      * @param array $params
@@ -24,7 +23,7 @@ class ArticleCreateService
         if (!empty($err)) {
             return $err;
         }
-        return true;
+        return TRUE;
     }
 
     /**

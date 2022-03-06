@@ -41,6 +41,9 @@ $container['logger'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 
+$container['home_service'] = function ($c) {
+    return new App\Services\HomeService;
+};
 $container['service'] = function ($c) {
     return new App\Services\AuthService;
 };
@@ -55,7 +58,7 @@ $container['article_create_service'] = function ($c) {
 };
 
 $container[App\Controllers\HomeController::class] = function ($c) {
-    return new App\Controllers\HomeController($c->get('view'), $c->get('logger'));
+    return new App\Controllers\HomeController($c->get('view'), $c->get('logger'), $c->get('home_service'));
 };
 $container[App\Controllers\LoginController::class] = function ($c) {
     return new App\Controllers\LoginController($c->get('view'), $c->get('logger'), $c->get('service'));
@@ -68,4 +71,7 @@ $container[App\Controllers\LogoutController::class] = function ($c) {
 };
 $container[App\Controllers\ArticleCreateController::class] = function ($c) {
     return new App\Controllers\ArticleCreateController($c->get('view'), $c->get('logger'), $c->get('article_create_service'));
+};
+$container[App\Controllers\ArticleEditController::class] = function ($c) {
+    return new App\Controllers\ArticleEditController($c->get('view'), $c->get('logger'), $c->get('home_service'));
 };
