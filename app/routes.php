@@ -5,6 +5,14 @@ $app->get('/', App\Controllers\HomeController::class)
 $app->get('/{page:[0-9]+}', App\Controllers\HomeController::class)
     ->setName('homepage_page');
 
+$app->get('/myArticles/', App\Controllers\MyArticlesController::class)
+    ->setName('myArticles');
+$app->get('/myArticles/{page:[0-9]+}', App\Controllers\MyArticlesController::class)
+    ->setName('myArticles');
+
+$app->get('/article_view/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
+ ->setName('article_view');
+
 $app->get('/article_edit/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
     ->setName('article_edit');
 $app->post('/article_edit/{id:[0-9]+}', App\Controllers\ArticleEditController::class)

@@ -1,33 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.twig' %}
 
-{% block main %}
-
+{% block body %}
     <div class="container body-content">
         <div class="row">
             {% for article in articles %}
-                <div class="col-md-12">
+                <div class="col-md-12 well">
                     <article>
                         <header>
-                           <h2>Title: {{ article.title }}</h2>
+                            <h2>{{ article.title }}</h2>
+                            <h5>{{ article.author }}</h5>
                         </header>
+                        <div>
 
-                        <p>
-                           Content: {{ article.content }}
-                        </p>
-
-                        <img src="{{ asset('uploads/images/' ~ article.image) }}" width="400" height="200" >
-
+                            <img src="{{ base_url() }}/uploads/images/{{ article.image }}" width="400" height="200" >
+                            <p>
+                                {{ article.summary }}
+                            </p>
+                        </div>
                         <footer>
                             <div class="pull-right">
-                                <a class="btn btn-danger btn-xs" href="{{ path('article_delete', {'id':article.id}) }}">delete &raquo;</a>
-                                <a class="btn btn-success btn-xs" href="{{ path('article_edit', {'id':article.id}) }}">edit &raquo;</a>
-                                <a class="btn btn-default btn-xs"
-                                   href="{{ path('blog_index') }}">back &raquo;</a>
+                                <a class="btn btn-success btn-xs" href="{{ path_for('article_view', {'id': article.id}) }}">view &raquo;</a>
+                                <a class="btn btn-danger btn-xs" href="{{ path_for('article_delete', {'id': article.id}) }}">delete &raquo;</a>
+                                <a class="btn btn-success btn-xs" href="{{ path_for('article_edit', {'id': article.id}) }}">edit &raquo;</a>
                             </div>
                         </footer>
                     </article>
                 </div>
-
                 <hr />
 
             {% endfor %}

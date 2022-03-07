@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Articles;
+use App\Models\Users;
 
 class HomeService
 {
@@ -9,24 +10,26 @@ class HomeService
     const DEFAULT_IMG = 'default.jpg';
     /**
      * Count Articles.
+     * @param int|string $authorId
      * @return int
      */
-    public function countArticles()
+    public function countArticles($authorId = '')
     {
-        return Articles::count();
+        // Get results by Model Articles.
+        $articles = new Articles();
+        return $articles->countArticles($authorId);
     }
     /**
      * Select Database.
      * @param int $page
+     * @param int|string $authorId
      * @return array
      */
-    public function selectDatabase($page)
+    public function selectDatabase($page, $authorId = '')
     {
-        $results = Articles::select("*")
-            ->orderBy('created','DESC')
-            ->skip($page)
-            ->take(SELF::PER_PAGE)
-            ->get();
+        // Get results by Model Articles.
+        $articles = new Articles();
+        $results = $articles->getArticles($page, $authorId);
 
         if (empty($results)) {
             return [];
@@ -38,6 +41,8 @@ class HomeService
             $res[$result->id]['image'] = !empty($result->image) ? $result->image : SELF::DEFAULT_IMG;
             $res[$result->id]['date'] = date('d/m/Y H:i', strtotime($result->created));
             $res[$result->id]['summary'] = $result->summary;
+            $query = Users::where("id", $result->authorId);
+            $res[$result->id]['author'] = $query->first()->FullName;
         }
 
         return $res;

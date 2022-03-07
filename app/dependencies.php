@@ -65,6 +65,9 @@ $container['image_service'] = function ($c) {
 $container[App\Controllers\HomeController::class] = function ($c) {
     return new App\Controllers\HomeController($c->get('view'), $c->get('logger'), $c->get('home_service'));
 };
+$container[App\Controllers\MyArticlesController::class] = function ($c) {
+    return new App\Controllers\MyArticlesController($c->get('view'), $c->get('logger'), $c->get('home_service'));
+};
 $container[App\Controllers\LoginController::class] = function ($c) {
     return new App\Controllers\LoginController($c->get('view'), $c->get('logger'), $c->get('service'));
 };
