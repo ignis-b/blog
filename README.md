@@ -1,16 +1,21 @@
-# Slim 3 Skeleton
+# Blog
 
-This is a simple skeleton project for Slim 3 that includes Twig, Flash messages and Monolog.
+This is a simple Blog.
 
-## Create your project:
+## Install the project:
 
-    $ composer create-project --no-interaction --stability=dev akrabat/slim3-skeleton my-app
+1. `$ git clone git@github.com:ignis-b/blog.git`
+2. `$ cd blog`
+3. `$ composer install`
+
+## Configure Database:
+* `Edit app/setting.php`:  update values  host, database, username, password
+* `Import Database`: in main directory blog.sql
 
 ### Run it:
+3. `$ php -S 0.0.0.0:8888 -t public public/index.php`
 
-1. `$ cd my-app`
-2. `$ php -S 0.0.0.0:8888 -t public public/index.php`
-3. Browse to http://localhost:8888
+4. Browse to http://localhost:8888
 
 ## Key directories
 
@@ -29,5 +34,5 @@ This is a simple skeleton project for Slim 3 that includes Twig, Flash messages 
 * `app/dependencies.php`: Services for Pimple
 * `app/middleware.php`: Application middleware
 * `app/routes.php`: All application routes are here
-* `app/src/Action/HomeAction.php`: Action class for the home page
+* `app/src/Action/HomeController.php`: Action class for the home page
 * `app/templates/home.twig`: Twig template file for the home page
