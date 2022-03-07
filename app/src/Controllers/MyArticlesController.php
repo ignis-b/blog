@@ -30,11 +30,17 @@ final class MyArticlesController
     {
         $this->logger->info("My articles action dispatched");
 
-        $page = !empty($args['page']) ? $args['page'] : 0;
-        $data = $this->homeService->selectDatabase($page, $_SESSION['id']);
-
+        $page = !empty($args['page']) ? $args['page'] : 1;
         $count = $this->homeService->countArticles($_SESSION['id']);
         $limit = HomeService::PER_PAGE;
+
+        if ($page > ceil($count / $limit)) {
+            return $response->withStatus(302)->withHeader('Location', '/myArticles');
+        }
+
+        $offset = ($page - 1) * $limit;
+        $data = $this->homeService->selectDatabase($offset, $_SESSION['id']);
+
         $this->view->render($response, 'article/myArticles.twig',
             [
                  'sess_name' => $_SESSION['name'],

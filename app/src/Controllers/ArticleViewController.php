@@ -7,7 +7,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Services\ArticleService;
 
-final class ArticleDeleteController
+final class ArticleViewController
 {
     private $view;
     private $logger;
@@ -28,29 +28,17 @@ final class ArticleDeleteController
 
     public function __invoke(Request $request, Response $response, $args)
     {
-        $this->logger->info("Article Delete Controller");
+        $this->logger->info("Article View Controller");
         $id = !empty($args['id']) ? $args['id'] : 0;
-        $template = 'delete';
-
-        if ($request->isPost()) {
-            $input = $request->getParsedBody();
-            if ($this->articleService->deleteDatabase($input['id']) === TRUE
-            ) {
-                $success = 'Article was deleted.';
-                $template = 'create';
-            }
-        }
         $data = $this->articleService->selectDatabase($id);
         if (empty($data)) {
             return $response->withStatus(302)->withHeader('Location', '/');
         }
-
         $this->view
-            ->render($response, 'article/' . $template . '.twig',
+            ->render($response, 'article/article.twig',
                 [
-                    'nameSuccess' => $success,
-                    'sess_name' => $_SESSION['name'],
                     'article' => $data,
+                    'sess_name' => $_SESSION['name'],
                     'sess_loggedin' => $_SESSION['loggedin']
                 ]);
         return $response;

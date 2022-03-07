@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Articles;
+use App\Models\Users;
 
 class ArticleService
 {
@@ -21,6 +22,8 @@ class ArticleService
             $res['date'] = date('d/m/Y H:i', strtotime($query->first()->created));
             $res['summary'] = $query->first()->summary;
             $res['content'] = $query->first()->content;
+            $query = Users::where("id", $query->first()->authorId);
+            $res['author'] = $query->first()->FullName;
         }
         
         return $res;

@@ -21,15 +21,15 @@ class HomeService
     }
     /**
      * Select Database.
-     * @param int $page
+     * @param int $offset
      * @param int|string $authorId
      * @return array
      */
-    public function selectDatabase($page, $authorId = '')
+    public function selectDatabase($offset, $authorId = '')
     {
         // Get results by Model Articles.
         $articles = new Articles();
-        $results = $articles->getArticles($page, $authorId);
+        $results = $articles->getArticles($offset, $authorId);
 
         if (empty($results)) {
             return [];

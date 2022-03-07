@@ -86,3 +86,6 @@ $container[App\Controllers\ArticleEditController::class] = function ($c) {
 $container[App\Controllers\ArticleDeleteController::class] = function ($c) {
     return new App\Controllers\ArticleDeleteController($c->get('view'), $c->get('logger'), $c->get('article_service'));
 };
+$container[App\Controllers\ArticleViewController::class] = function ($c) {
+    return new App\Controllers\ArticleViewController($c->get('view'), $c->get('logger'), $c->get('article_service'));
+};

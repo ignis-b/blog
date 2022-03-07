@@ -15,12 +15,12 @@ class Articles extends \Illuminate\Database\Eloquent\Model
 
     /**
      * Select Database.
-     * @param int $page
+     * @param int $offset
      * @param int $authorId
      */
-    public function getArticles($page, $authorId) {
+    public function getArticles($offset, $authorId) {
         $where = $authorId ? (' WHERE authorId = ' . $_SESSION['id']) : '';
-        $sql = 'SELECT * FROM articles a' . $where . ' ORDER BY created DESC LIMIT ' . $page . ', ' . SELF::PER_PAGE;
+        $sql = 'SELECT * FROM articles a' . $where . ' ORDER BY created DESC LIMIT ' . $offset . ', ' . SELF::PER_PAGE;
 
         return $this->getConnection()->select($sql);
     }

@@ -49,6 +49,9 @@ final class ArticleEditController
             }
         }
         $data = $this->articleService->selectDatabase($id);
+        if (empty($data)) {
+            return $response->withStatus(302)->withHeader('Location', '/');
+        }
 
         $this->view->render($response, 'article/edit.twig',
          [

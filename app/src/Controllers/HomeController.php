@@ -30,11 +30,18 @@ final class HomeController
     {
         $this->logger->info("Home page action dispatched");
 
-        $page = !empty($args['page']) ? $args['page'] : 0;
-        $data = $this->homeService->selectDatabase($page);
-
-        $count = $this->homeService->countArticles();
+        $page = !empty($args['page']) ? $args['page'] : 1;
         $limit = HomeService::PER_PAGE;
+        $count = $this->homeService->countArticles();
+
+        if ($page > ceil($count / $limit)) {
+            return $response->withStatus(302)->withHeader('Location', '/');
+        }
+
+        $offset = ($page - 1) * $limit;
+
+        $data = $this->homeService->selectDatabase($offset);
+
         $this->view->render($response, 'home.twig',
             [
                  'sess_name' => $_SESSION['name'],

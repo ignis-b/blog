@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.twig' %}
 
-{% block main %}
+{% block body %}
 
     <div class="container body-content">
         <div class="row">
@@ -9,23 +9,14 @@
                     <header>
                         <h2>{{ article.title }}</h2>
                     </header>
-
                     <p>
                         {{ article.content }}
                     </p>
-
-                    <img src="{{ asset('uploads/images/' ~ article.image) }}" width="400" height="200" >
+                    <img src="{{ base_url() }}/uploads/images/{{ article.image }}" width="400" height="200">
 
                     <small class="author">
-                        {{ article.author.fullName }}
+                        {{ article.author }} | {{ article.date }}
                     </small>
-
-                    <a href="{{ path_for('article_likes', {'id': article.id}) }}"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-
-                    <button class="btn btn-success" id="btnComment">Add</button>
-
-                    <div id="form">
-                    </div>
 
                     <footer>
                         <div class="pull-right">
@@ -33,36 +24,13 @@
                             <a class="btn btn-danger btn-xs" href="{{ path_for('article_delete', {'id':article.id}) }}">delete &raquo;</a>
                             <a class="btn btn-success btn-xs" href="{{ path_for('article_edit', {'id':article.id}) }}">edit &raquo;</a>
                             {% endif %}
-                            <a class="btn btn-default btn-xs" href="{{ path_for('blog_index') }}">back &raquo;</a>
+                            <a class="btn btn-default btn-xs" href="{{ path_for('homepage') }}">back &raquo;</a>
                         </div>
                     </footer>
                 </article>
             </div>
         </div>
     </div>
-
-    <script>
-
-        let form = $(`
-            <form method="post">
-                <div class="form-group">
-                    <!--<label class="col-sm-4 control-label" for="article_content">Content</label>-->
-                    <div class="col-sm-6">
-                        <textarea class="form-control" rows="6" id="article_content" name="article[content]">
-                        </textarea>
-                        <input class="btn btn-success" type="submit" value="Create" />
-                    </div>
-                </div>
-            </form>
-        `);
-
-        $('#btnComment').click(function (e) {
-            // alert('hi');
-            e.preventDefault();
-            $('#form').append(form);
-            $('#form').toggle();
-        })
-    </script>
 
 {% endblock %}
 

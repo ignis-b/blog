@@ -10,7 +10,7 @@ $app->get('/myArticles/', App\Controllers\MyArticlesController::class)
 $app->get('/myArticles/{page:[0-9]+}', App\Controllers\MyArticlesController::class)
     ->setName('myArticles');
 
-$app->get('/article_view/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
+$app->get('/article_view/{id:[0-9]+}', App\Controllers\ArticleViewController::class)
  ->setName('article_view');
 
 $app->get('/article_edit/{id:[0-9]+}', App\Controllers\ArticleEditController::class)
