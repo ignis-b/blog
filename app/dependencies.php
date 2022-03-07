@@ -23,6 +23,11 @@ $container['flash'] = function ($c) {
     return new Slim\Flash\Messages;
 };
 
+// Override the default Not Found Handler
+$container['notFoundHandler'] = function ($c) {
+    return new App\Errors\NotFoundHandler($c->get('view'));
+};
+
 // -----------------------------------------------------------------------------
 // Service factories
 // -----------------------------------------------------------------------------

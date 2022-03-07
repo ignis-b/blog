@@ -1,0 +1,9 @@
+{% extends 'base.twig' %}
+{% block body %}
+    <div class="container body-content">
+        <div class="col-md-12 well">
+            404 Page not found <a class="btn btn-default" href="{{ path_for('homepage', {id: article.id}) }}">back</a>
+        </div>
+    </div>
+
+{% endblock %}
