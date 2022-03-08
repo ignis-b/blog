@@ -20,15 +20,5 @@ return [
             'name' => 'app',
             'path' => __DIR__ . '/../log/app.log',
         ],
-        'db' => [
-            'driver' => 'mysql',
-            'host' => 'localhost',
-            'database' => 'blog',
-            'username' => 'root',
-            'password' => 'sql8109',
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ]
     ],
 ];
